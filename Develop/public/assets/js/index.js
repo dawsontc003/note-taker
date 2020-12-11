@@ -111,9 +111,9 @@ console.log(noteTitle.value);
 
 const handleRenderSaveBtn = () => {
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
-    show(saveNoteBtn);
-  } else {
     hide(saveNoteBtn);
+  } else {
+    show(saveNoteBtn);
   }
 };
 

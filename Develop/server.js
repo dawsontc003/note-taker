@@ -23,28 +23,24 @@ app.get("/notes", (req, res) => {
 });
 // route for get notes
 app.get("/api/notes", (req, res) => {
-  res.send("./db/db.json", "utf8", (error, data) =>
-    error ? console.error(error) : res.send(data)
-  );
-  console.log("get api working");
+  // res.send("./db/db.json", "utf8", (error, data) =>
+  //   error ? console.error(error) : res.send(data)
+  // );
+  console.log("API to get notes");
+  res.end();
 });
 
 // Create New Characters - takes in JSON input
 app.post("/api/notes", (req, res) => {
   const postNote = req.body;
-  // fs.appendFile(
-  //   "./db/db.json",
-  //   res.json("postNote"),
-  //   // error handling and success message to advise commandline user of error or succes
-  //   (err) => (err ? console.error(err) : console.log("Success!"))
-  // );
-  console.log("testPost");
+  fs.appendFile(
+    "./db/db.json",
+    `\n ${postNote}`,
+    // error handling and success message to advise commandline user of error or succes
+    (err) => (err ? console.error(err) : console.log("Success!"))
+  );
   console.log(postNote);
   res.end();
 });
-
-// $.getJSON("db.json", function (data) {
-//   data.push(postNote);
-// });
 
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));

@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 
 const fs = require("fs");
+const { stringify } = require("querystring");
 // Declaring variable app to store express function output
 const app = express();
 // declaring variable PORT as desired port number for server
@@ -23,6 +24,10 @@ app.get("/notes", (req, res) => {
 });
 // route for get notes
 app.get("/api/notes", (req, res) => {
+  // fs.readFile("./db/db.json", (err, data) => {
+  //   if (err) throw err;
+  //   console.log(data);
+  // });
   // res.send("./db/db.json", "utf8", (error, data) =>
   //   error ? console.error(error) : res.send(data)
   // );

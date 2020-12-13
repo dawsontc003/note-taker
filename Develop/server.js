@@ -24,27 +24,31 @@ app.get("/notes", (req, res) => {
 });
 // route for get notes
 app.get("/api/notes", (req, res) => {
-  // fs.readFile("./db/db.json", (err, data) => {
-  //   if (err) throw err;
-  //   console.log(data);
-  // });
-  // res.send("./db/db.json", "utf8", (error, data) =>
-  //   error ? console.error(error) : res.send(data)
-  // );
+  fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    //console.log(JSON.parse(data));
+    const note = JSON.parse(data);
+    console.log(note);
+  });
   console.log("API to get notes");
+
   res.end();
 });
+// array for notes
+const notes = [];
 
 // Create New Characters - takes in JSON input
 app.post("/api/notes", (req, res) => {
-  const postNote = req.body;
-  fs.appendFile(
+  let note = JSON.stringify(req.body);
+  notes.push(note);
+
+  fs.writeFile(
     "./db/db.json",
-    `\n ${postNote}`,
+    `[${notes}]`,
     // error handling and success message to advise commandline user of error or succes
     (err) => (err ? console.error(err) : console.log("Success!"))
   );
-  console.log(postNote);
+  //console.log(notes);
   res.end();
 });
 

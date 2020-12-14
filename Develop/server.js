@@ -2,7 +2,7 @@
 const express = require("express");
 // requiring "path" shipped module
 const path = require("path");
-
+// require to assign each note object a unique ID
 const { v4: uuidv4 } = require("uuid");
 
 const fs = require("fs");
@@ -11,7 +11,7 @@ const { response } = require("express");
 // Declaring variable app to store express function output
 const app = express();
 // declaring variable PORT as desired port number for server
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
 // Middleware express code
 app.use(express.urlencoded({ extended: true }));
